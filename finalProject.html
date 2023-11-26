@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WEB-115 Final Project</title>
+  <head>
+    <style>
+        #plan {
+            font-size: 20px;
+            padding: 10px;
+        }
+        #banner {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        #meal {
+            font-size: 40px;
+            text-align: center
+        }
+
+        /*styling for tables (added in innerHTML)*/
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #D6EEEE;
+        }
+    </style>
+    <div id="banner">
+        <p>Timothy Hayes</p>
+        <p>WEB-115.0001</p>
+        <p id="meal">Build Your Meal Plan!</p>
+    </div>
+</head>
+
+<body>
+    <form id="plan">
+        <div>
+            <p>Monday:</p>
+            <label>Breakfast</label><input type="text" id="monbrf">
+            <label>Snack</label><input type="text" id="monsn1">
+            <label>Lunch</label><input type="text" id="monlun">
+            <label>Snack</label><input type="text" id="monsn2">
+            <label>Dinner</label><input type="text" id="mondin">
+        </div>
+        <div>
+            <p>Tuesday:</p>
+            <label>Breakfast</label><input type="text" id="tuebrf">
+            <label>Snack</label><input type="text" id="tuesn1">
+            <label>Lunch</label><input type="text" id="tuelun">
+            <label>Snack</label><input type="text" id="tuesn2">
+            <label>Dinner</label><input type="text" id="tuedin">
+        </div>
+        <div>
+            <p>Wednesday:</p>
+            <label>Breakfast</label><input type="text" id="wedbrf">
+            <label>Snack</label><input type="text" id="wedsn1">
+            <label>Lunch</label><input type="text" id="wedlun">
+            <label>Snack</label><input type="text" id="wedsn2">
+            <label>Dinner</label><input type="text" id="weddin">
+        </div>
+        <div>
+            <p>Thursday:</p>
+            <label>Breakfast</label><input type="text" id="thubrf">
+            <label>Snack</label><input type="text" id="thusn1">
+            <label>Lunch</label><input type="text" id="thulun">
+            <label>Snack</label><input type="text" id="thusn2">
+            <label>Dinner</label><input type="text" id="thudin">
+        </div>
+        <div>
+            <p>Friday:</p>
+            <label>Breakfast</label><input type="text" id="fribrf">
+            <label>Snack</label><input type="text" id="frisn1">
+            <label>Lunch</label><input type="text" id="frilun">
+            <label>Snack</label><input type="text" id="frisn2">
+            <label>Dinner</label><input type="text" id="fridin">
+        </div>
+        <div>
+            <p>Saturday:</p>
+            <label>Breakfast</label><input type="text" id="satbrf">
+            <label>Snack</label><input type="text" id="satsn1">
+            <label>Lunch</label><input type="text" id="satlun">
+            <label>Snack</label><input type="text" id="satsn2">
+            <label>Dinner</label><input type="text" id="satdin">
+        </div>
+        <div>
+            <p>Sunday:</p>
+            <label>Breakfast</label><input type="text" id="sunbrf">
+            <label>Snack</label><input type="text" id="sunsn1">
+            <label>Lunch</label><input type="text" id="sunlun">
+            <label>Snack</label><input type="text" id="sunsn2">
+            <label>Dinner</label><input type="text" id="sundin">
+        </div>
+    </form>
+<button id="btn">Display Meal Plan</button>
+<button id="clr">Clear Meal Plan</button>
+    <form id="myForm">
+        <input type="text" id="myInput" value="">
+        <input type="button" id="myButton" value="Create HTML">
+    </form>
+    <table id="planner"></table>
+    
+    <script  src="projectJS.js"></script>
+</body> 
