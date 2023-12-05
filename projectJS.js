@@ -1,45 +1,149 @@
-document.getElementById("btn").addEventListener("click",function() {
-    const mon = ["monbrf", "monsn1", "monlun", "monsn2", "mondin"]
-    const tue = ["tuebrf", "tuesn1", "tuelun", "tuesn2", "tuedin"]
-    const wed = ["wedbrf", "wedsn1", "wedlun", "wedsn2", "weddin"]
-    const thu = ["thubrf", "thusn1", "thulun", "thusn2", "thudin"]
-    const fri = ["fribrf", "frisn1", "frilun", "frisn2", "fridin"]
-    const sat = ["satbrf", "satsn1", "satlun", "satsn2", "satdin"]
-    const sun = ["sunbrf", "sunsn1", "sunlun", "sunsn2", "sundin"]
-    let tableContent = "<tr><td></td><td>Breakfast</td><td>Snack</td><td>Lunch</td><td>Snack</td><td>Dinner</td><tr>"
-    const days = [mon, tue, wed, thu, fri, sat, sun]
-    const dayName = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    for (let day = 0; day < days.length; day++) {
-        tableContent += "<td>" + dayName[day] + "</td>"
-        for (let i = 0; i < days[day].length; i++) {
-            tableContent += "<td>" + document.getElementById(days[day][i]).value + "</td><br>"  
-        }
-        tableContent += "</tr>"
+function createInputFields() {
+  var days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  var meals = ["Breakfast", "Snack 1", "Lunch", "Snack 2", "Dinner"];
+
+  for (var i = 0; i < days.length; i++) {
+    var dayLabel = document.createElement("label");
+    dayLabel.textContent = `${days[i]}:`;
+
+    document.getElementById("mealPlanForm").appendChild(dayLabel);
+
+    for (var j = 0; j < meals.length; j++) {
+      var input = document.createElement("input");
+      input.setAttribute("type", "text");
+      input.setAttribute("id", days[i] + meals[j]);
+      input.setAttribute("name", days[i] + "[]");
+      input.setAttribute("required", "true");
+      input.setAttribute("placeholder", meals[j]);
+
+      document.getElementById("mealPlanForm").appendChild(input);
     }
-    document.getElementById("planner").innerHTML = tableContent + "</tr>"
-})
-document.getElementById("clr").addEventListener("click",function() {
-    document.getElementById("planner").innerHTML = "<tr></tr>"
-    })
 
-document.getElementById("myButton").addEventListener('click',myWindow)
-function myWindow()
-{
-    visitorName = document.getElementById("myInput").value;
-    myText = ("<html>\n<head>\n<title>Welcome</title>\n</head>\n<body>\n");
-    myText += ("Hello " + visitorName);
-    myText += ("</body>\n</html>");
-
-    flyWindow = window.open('about:blank','myPop','width=400,height=200,left=200,top=200');
-    flyWindow.document.write(myText);
+    document
+      .getElementById("mealPlanForm")
+      .appendChild(document.createElement("br"));
+  }
 }
-//add event listener and funtion that uses innerHTML to display meal plan form in a table
 
+createInputFields();
 
-//add event listener for clearing meal plan table from 'clear meal plan' button
+function generateMealPlan() {
+  var emailInput = document.getElementById("email");
+  var isEmailValid = validateEmail(emailInput.value);
 
-/*function replaceTable() {
-    const old_tbody = document.getElementById('tableBody')
-    const new_tbody = document.createElement('tbody');
-    old_tbody.parentNode.replaceChild(new_tbody, old_tbody)
-  }*/
+  if (!isEmailValid) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  var name = document.getElementById("name").value;
+  var goal = document.getElementById("goal").value;
+  
+    var days = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
+    var mealPlan = {};
+  
+    for (var i = 0; i < days.length; i++) {
+      mealPlan[days[i]] = getDayMeals(days[i]);
+    }
+  
+    var mealPlanWindow = window.open("", "_blank");
+  
+    mealPlanWindow.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Meal Plan</title>
+              <style>
+                  body {
+                      font-family: monospace;
+                  }
+                  table {
+                      border-collapse: collapse;
+                      width: 100%;
+                  }
+        
+                  th, td {
+                      text-align: left;
+                      padding: 8px;
+                      font-size: 15px;
+                  }
+        
+                  tr:nth-child(even) {
+                      background-color: #D6EEEE;
+                }
+              </style>
+          </head>
+          <body>
+              <h1>Weekly Meal Plan for ${name}</h1>
+              <p>Weekly Goal: ${goal}</p>
+              <table>
+              <tr><td></td><td>Breakfast</td><td>Snack</td><td>Lunch</td><td>Snack</td><td>Dinner</td><tr>
+              ${generateMealList(mealPlan)}
+              </table>
+              <button onclick="window.print()">Print this page</button>
+          </body>
+          </html>
+      `);
+  
+    function getDayMeals(day) {
+      var meals = [];
+      var mealInputs = document.getElementsByName(day + "[]");
+      for (var i = 0; i < mealInputs.length; i++) {
+        meals.push(mealInputs[i].value);
+      }
+      return meals;
+    }
+  }
+  
+  function generateMealList(mealPlan) {
+    var mealList = "";
+    var days = Object.keys(mealPlan);
+    var meals = ["Breakfast", "Snack 1", "Lunch", "Snack 2", "Dinner"];
+  
+    for (var i = 0; i < days.length; i++) {
+      mealList += `<tr><td>${days[i]}</td>`;
+  
+      for (var j = 0; j < mealPlan[days[i]].length; j++) {
+        mealList += `<td>${meals[j]}: ${mealPlan[days[i]][j]}</td>`;
+      }
+  
+      // Add line break after each day to make sure they each have their own line
+      mealList += "</tr>";
+    }
+  
+    return mealList;
+  }
+  
+  function clearForm() {
+    document.getElementById("mealPlanForm").reset();
+  }
+  
+  function printOrDownload() {
+    // have to look into print/download...
+  }
+  
+  function validateEmail(email) {
+    var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email.match(emailRegex)) {
+      return false;
+    }
+    return true;
+  }

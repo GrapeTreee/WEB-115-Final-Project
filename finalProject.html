@@ -4,7 +4,7 @@
   <title>WEB-115 Final Project</title>
   <head>
     <style>
-        #plan {
+        #plan, #mealPlanForm {
             font-size: 20px;
             padding: 10px;
         }
@@ -42,71 +42,22 @@
 </head>
 
 <body>
-    <form id="plan">
-        <div>
-            <p>Monday:</p>
-            <label>Breakfast</label><input type="text" id="monbrf">
-            <label>Snack</label><input type="text" id="monsn1">
-            <label>Lunch</label><input type="text" id="monlun">
-            <label>Snack</label><input type="text" id="monsn2">
-            <label>Dinner</label><input type="text" id="mondin">
-        </div>
-        <div>
-            <p>Tuesday:</p>
-            <label>Breakfast</label><input type="text" id="tuebrf">
-            <label>Snack</label><input type="text" id="tuesn1">
-            <label>Lunch</label><input type="text" id="tuelun">
-            <label>Snack</label><input type="text" id="tuesn2">
-            <label>Dinner</label><input type="text" id="tuedin">
-        </div>
-        <div>
-            <p>Wednesday:</p>
-            <label>Breakfast</label><input type="text" id="wedbrf">
-            <label>Snack</label><input type="text" id="wedsn1">
-            <label>Lunch</label><input type="text" id="wedlun">
-            <label>Snack</label><input type="text" id="wedsn2">
-            <label>Dinner</label><input type="text" id="weddin">
-        </div>
-        <div>
-            <p>Thursday:</p>
-            <label>Breakfast</label><input type="text" id="thubrf">
-            <label>Snack</label><input type="text" id="thusn1">
-            <label>Lunch</label><input type="text" id="thulun">
-            <label>Snack</label><input type="text" id="thusn2">
-            <label>Dinner</label><input type="text" id="thudin">
-        </div>
-        <div>
-            <p>Friday:</p>
-            <label>Breakfast</label><input type="text" id="fribrf">
-            <label>Snack</label><input type="text" id="frisn1">
-            <label>Lunch</label><input type="text" id="frilun">
-            <label>Snack</label><input type="text" id="frisn2">
-            <label>Dinner</label><input type="text" id="fridin">
-        </div>
-        <div>
-            <p>Saturday:</p>
-            <label>Breakfast</label><input type="text" id="satbrf">
-            <label>Snack</label><input type="text" id="satsn1">
-            <label>Lunch</label><input type="text" id="satlun">
-            <label>Snack</label><input type="text" id="satsn2">
-            <label>Dinner</label><input type="text" id="satdin">
-        </div>
-        <div>
-            <p>Sunday:</p>
-            <label>Breakfast</label><input type="text" id="sunbrf">
-            <label>Snack</label><input type="text" id="sunsn1">
-            <label>Lunch</label><input type="text" id="sunlun">
-            <label>Snack</label><input type="text" id="sunsn2">
-            <label>Dinner</label><input type="text" id="sundin">
-        </div>
-    </form>
-<button id="btn">Display Meal Plan</button>
-<button id="clr">Clear Meal Plan</button>
-    <form id="myForm">
-        <input type="text" id="myInput" value="">
-        <input type="button" id="myButton" value="Create HTML">
-    </form>
-    <table id="planner"></table>
     
-    <script  src="projectJS.js"></script>
+<form id="mealPlanForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="goal">Weekly Goal:</label>
+    <textarea id="goal" name="goal" rows="4" required></textarea>
+
+    <h2>Meal Planner</h2>
+
+    <script src="projectJS.js"></script>
+
+    <button type="button" onclick="generateMealPlan()">Generate Meal Plan</button>
+    <button type="button" onclick="clearForm()">Clear Planner</button>
+</form>
 </body> 
